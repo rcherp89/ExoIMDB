@@ -36,23 +36,26 @@ const toggleFavorite = (movie) => {
 
 <template>
   <div>
-    <input v-model="inputId" required placeholder="Enter your film ID" class="inputText">
+    <input v-model="inputId" required placeholder="Enter your film IDs separated by a comma" class="inputText">
     
-    <input v-model="inputTitle" @input="onFilter()"  placeholder="Filter by Title" class="inputText">
+    <input v-model="inputTitle" @input="onFilter()"  placeholder="Filter results by Title" class="inputText">
 
-    <button @click="onSearch()" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"> Search </button>
+    <button @click="onSearch()" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium roundedBorders text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"> Search </button>
 
-    <input type="checkbox" v-model="filterbyFavorites"> Filter by Favorites</input>
+    <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium roundedBorders text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+      <input type="checkbox" v-model="filterbyFavorites"> Filter by Favorites</input>
+    </button>
+    
   </div>
   
   
 
   <ul>
     <li v-for="movie in filteredMovies" :key="movie.Title">
-      <div v-if="!filterbyFavorites || favoriteMovies.has(movie.imdbID)">
-        <h1 @click="movie.isShown = !movie.isShown" class="highlightCursor font-bold text-2xl">{{ movie.Title }}</h1>
-        <input id="star1" class="star" type="checkbox" title="bookmark page" @click="toggleFavorite(movie)">
+      <div v-if="!filterbyFavorites || favoriteMovies.has(movie.imdbID)" class="cardDisplay">
         <img :src = "movie.Poster" @click="movie.isShown = !movie.isShown" class="highlightCursor"/>
+        <input id="star1" class="star float-left" type="checkbox" title="bookmark page" @click="toggleFavorite(movie)">
+        <h1 @click="movie.isShown = !movie.isShown" class="highlightCursor font-bold text-2xl">{{ movie.Title }}</h1>
         <TransitionRoot as="template" :show="movie.isShown">
           <Dialog class="relative z-10" @close="movie.isShown = false">
             <TransitionChild as="template" enter="ease-out duration-300" enter-from="opacity-0" enter-to="opacity-100" leave="ease-in duration-200" leave-from="opacity-100" leave-to="opacity-0">
@@ -97,14 +100,23 @@ const toggleFavorite = (movie) => {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
+    border-radius: 25px; 
   }
   .searchResults{
     display: inline-block;
   }
+  .roundedBorders{
+    border-radius: 25px;
+  }
+  .cardDisplay{
+    display: flex;
+    padding: 5px;
+  }
   .star {
       visibility:hidden;
-      font-size:30px;
+      font-size:80px;
       cursor:pointer;
+      color: yellow;
   }
   .star:before {
     content: "\2606";

@@ -3,7 +3,7 @@ import Search from './components/Search.vue'
 </script>
 
 <template>
-  <h1 class="text-5xl font-bold">
+  <h1 class="text-5xl font-bold padding-bottom">
     Movie Database
   </h1>
   <div id="searchdiv">
@@ -14,11 +14,11 @@ import Search from './components/Search.vue'
 </template>
 
 <style scoped>
-.searchdiv{
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
+  .searchdiv{
+    margin: 0;
+    display: flex;
+    place-items: center;
+    min-width: 320px;
+    min-height: 100vh;
+  }
 </style>
