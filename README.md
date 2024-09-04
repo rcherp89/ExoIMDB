@@ -1,3 +1,12 @@
+to boot up :
+npm install
+npm run dev
+
+as example ids you can use tt1201607,tt1285016
+
+
+
+
 # Senior Vue.js Developer Recruitment Test - UI/UX Focus
 
 ## Task Overview
